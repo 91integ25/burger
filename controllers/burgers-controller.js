@@ -19,12 +19,17 @@ router.put("/:id",function(req,res){
 	});
 })
 router.post("/",function(req,res){
-	console.log(req.body);
-	burger.create([
+	if(req.body.burger_name === ""){
+		res.send("Name a burger you would like to eat");
+	}else{
+			burger.create([
 		"burger_name","devoured"],
 		[req.body.burger_name,req.body.devoured],
 		function(){
 			res.redirect("/");
 		})
+	}
+
 })
+
 module.exports = router;
